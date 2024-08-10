@@ -46,4 +46,10 @@ jobs:
               head: `issue-${{ github.event.issue.number }}`,
               base: 'master',
               body: 'This PR adds a file containing the description of issue #${{ github.event.issue.number }}.'
-            })
+            });
+            return pullRequest.number;
+
+      - name: Delete branch
+        if: success()
+        run: |
+          git push origin --delete issue-${{ github.event.issue.number }}
