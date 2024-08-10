@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    font-family: "Raleway", sans-serif;
+    padding: 10px;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 980px;
+    border-radius: 16px;
+    overflow: hidden;
+
+    box-shadow: rgba(0, 0, 0, 10%) 0 0 15px 5px;
+}
+
+.container .cover {
+    width: 100%;
+    aspect-ratio: 1.777777777777777;
+    object-fit: cover;
+}
+
+.container .details {
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+}
+
+.game-title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.game-title h1, .game-title a {
+    margin-block-end: 0;
+    margin-block-start: 0;
+}
+
+.game-title .title {
+    font-weight: 900;
+    font-size: 50px;
+}
+
+.game-title .developer {
+    font-weight: 300;
+    font-size: 50px;
+
+    text-decoration: none;
+    color: #00b4ff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.container {
+    font-size: 18px;
+}
+
+.description {
+    text-align: center;
+}
+
+.developers a {
+    text-decoration: none;
+    color: #00b4ff;
+}
+.developers a:hover {
+    text-decoration: underline;
+}
+
+.images img {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 10%) 0 0 15px 5px;
+}
+
+hr {
+    border: 1px solid rgba(0, 0, 0, .1);
+}
