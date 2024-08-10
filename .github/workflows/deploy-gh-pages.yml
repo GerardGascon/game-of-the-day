@@ -33,6 +33,13 @@ jobs:
       - name: Modify HTML File
         run: node scripts/generate-page.js
 
+      - name: Commit state file
+        run: |
+          git config --global user.name '${{ github.actor }}'
+          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
+          git commit -am "Resetted Website's State"
+          git push
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

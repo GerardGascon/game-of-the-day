@@ -15,7 +15,7 @@ jobs:
       - name: Remove file
         run: rm data/state.json
 
-      - name: Commit report
+      - name: Commit removed file
         run: |
           git config --global user.name '${{ github.actor }}'
           git config --global user.email '${{ github.actor }}@users.noreply.github.com'
