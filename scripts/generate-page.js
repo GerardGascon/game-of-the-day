@@ -3,16 +3,37 @@ const path = require('path');
 const cheerio = require('cheerio');
 
 const dataFilePath = path.join(__dirname, '..', 'data', 'data.json');
+const stateFilePath = path.join(__dirname, '..', 'data', 'state.json');
+
 const templateFilePath = path.join(__dirname, '..', 'templates', 'template.html');
 const htmlFilePath = path.join(__dirname, '..', 'public', 'index.html');
 
 const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
-const htmlContent = fs.readFileSync(templateFilePath, 'utf8');
+const state = loadState();
 
-const page = generatePage(htmlContent, data[0]);
+if (state.length === data.length)
+    state.length = 0;
+
+let items = [];
+for (const i in data) {
+    if (state.includes(data[i].name))
+        continue;
+
+    items.push(data[i].name);
+}
+
+const item = getRandomItem(items);
+const dataSelected = data.filter(obj => obj.name === item)[0];
+state.push(item);
+console.log(dataSelected);
+
+saveState();
+
+const page = generatePage(dataSelected);
 fs.writeFileSync(htmlFilePath, page);
 
-function generatePage(template, data){
+function generatePage(data){
+    const htmlContent = fs.readFileSync(templateFilePath, 'utf8');
     const $ = cheerio.load(htmlContent);
 
     $(`#game-title`).html(data.name);
@@ -36,4 +57,21 @@ function generatePage(template, data){
     const updatedText = $(`#developers`).html().replace('%names%', namesString);
     $(`#developers`).html(updatedText);
     return $.html();
+}
+
+function loadState(){
+    if (fs.existsSync(stateFilePath)) {
+        const data = fs.readFileSync(stateFilePath, 'utf8');
+        return JSON.parse(data);
+    }
+    return [];
+}
+
+function saveState(){
+    fs.writeFileSync(stateFilePath, JSON.stringify(state, null, 2), 'utf8');
+}
+
+function getRandomItem(items){
+    const index = Math.floor(Math.random() * items.length);
+    return items[index];
 }
