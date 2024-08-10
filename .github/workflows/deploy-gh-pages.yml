@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Create empty hello.html file
+        run: echo "" > hello.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
