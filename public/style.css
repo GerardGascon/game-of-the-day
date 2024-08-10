@@ -1,4 +1,4 @@
-.container .cover {
+#cover {
     width: 100%;
     aspect-ratio: 1.777777777777777;
     object-fit: cover;
@@ -22,7 +22,7 @@
     margin-block-start: 0;
 }
 
-.game-title .title {
+#game-title {
     font-weight: 900;
     font-size: 50px;
 }
@@ -44,15 +44,15 @@
     text-align: center;
 }
 
-.developers a {
+#developers a {
     text-decoration: none;
     color: var(--highlight-color);
 }
-.developers a:hover {
+#developers a:hover {
     text-decoration: underline;
 }
 
-.images img {
+#screenshots img {
     display: block;
     max-width: 100%;
     max-height: 440px;
