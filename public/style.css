@@ -44,14 +44,6 @@
     text-align: center;
 }
 
-#developers a {
-    text-decoration: none;
-    color: var(--highlight-color);
-}
-#developers a:hover {
-    text-decoration: underline;
-}
-
 #screenshots img {
     display: block;
     max-width: 100%;

@@ -74,6 +74,14 @@ body::before {
     border-radius: 3px;
 }
 
+.details a {
+    text-decoration: none;
+    color: var(--highlight-color);
+}
+.details a:hover {
+    text-decoration: underline;
+}
+
 .container {
     background-color: white;
 
