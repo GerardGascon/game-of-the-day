@@ -1,4 +1,4 @@
-name: Reset Website's State
+name: 🔄️ Reset Website's State
 on:
   workflow_dispatch:
 

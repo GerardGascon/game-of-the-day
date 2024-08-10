@@ -1,10 +1,10 @@
-name: 👾 Get Random Game and Deploy to GitHub Pages
+name: ⬆️ Deploy to GitHub Pages
 
 on:
-  workflow_dispatch:
+  push:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -30,16 +30,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Modify HTML File
-        run: node scripts/generate-page.js
-
-      - name: Commit state file
-        run: |
-          git config --global user.name '${{ github.actor }}'
-          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
-          git add .
-          git commit -am "Resetted Website's State"
-          git push
+      - name: Regenerate HTML File
+        run: node scripts/generate-from-state.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
