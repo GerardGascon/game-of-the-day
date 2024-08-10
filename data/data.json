@@ -18,21 +18,46 @@
     ]
   },
   {
-    "name": "ABC1",
-    "link": "https://geri8.itch.io/abc",
+    "name": "Domyno",
+    "link": "https://geri8.itch.io/domyno",
     "link_name": "itch.io",
-    "cover": "abc.png",
-    "description": "ABC is a game about characters.\nYou control the whole alphabet, from the letters A to Z.",
+    "cover": "domyno.png",
+    "description": "This is a game about pressing the red button...\nBut you use domino pieces to press it.",
     "screenshots": [
-      "abc/image1.png",
-      "abc/image2.png",
-      "abc/image3.png"
+      "domyno/image1.png",
+      "domyno/image2.png",
+      "domyno/image3.png"
     ],
     "developers": [
       "Geri"
     ],
     "developers_link": [
       "https://x.com/G_of_Geri"
+    ]
+  },
+  {
+    "name": "Roses",
+    "link": "https://arnaums1.itch.io/roses",
+    "link_name": "itch.io",
+    "cover": "roses.png",
+    "description": "Ajuda'ns a fer florir el català!\nMake a garden flourish while you write in Catalan language.",
+    "screenshots": [
+      "roses/image1.png",
+      "roses/image2.png"
+    ],
+    "developers": [
+      "Geri",
+      "Arnau",
+      "Raquel",
+      "Índigo",
+      "Iván"
+    ],
+    "developers_link": [
+      "https://x.com/G_of_Geri",
+      "https://x.com/arnau555",
+      null,
+      null,
+      null
     ]
   }
 ]
