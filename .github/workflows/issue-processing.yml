@@ -44,6 +44,6 @@ jobs:
               repo: context.repo.repo,
               title: `Add file for issue #${{ github.event.issue.number }}`,
               head: `issue-${{ github.event.issue.number }}`,
-              base: 'main',
+              base: 'master',
               body: 'This PR adds a file containing the description of issue #${{ github.event.issue.number }}.'
             })
