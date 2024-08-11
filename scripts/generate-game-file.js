@@ -85,7 +85,9 @@ async function saveImages(data) {
 
 const main = async() => {
     const body = process.env.ISSUE_BODY;
+    const actor = process.env.ISSUE_OWNER;
     const parsedData = helper.parseIssue(body);
+    parsedData.filename = `${actor}-${parsedData.filename}`;
 
     await saveImages(parsedData).then(images => {
         parsedData.screenshots = images;

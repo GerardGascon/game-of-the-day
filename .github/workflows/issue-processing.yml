@@ -30,6 +30,7 @@ jobs:
           node scripts/generate-game-file.js
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_OWNER: ${{ github.actor }}
 
       - name: Commit and push the file
         run: |
