@@ -21,9 +21,9 @@ export function parseIssue(issueText) {
     const fileName = getFileName(gameTitle);
     const link = findValueAfterHeading("### Link");
     const link_name = findValueAfterHeading("### Store Name");
-    const coverImage = findValueAfterHeading("### Cover Image");
+    const coverImage = parseUrl(findValueAfterHeading("### Cover Image"));
     const description = findValueAfterHeading("### Description");
-    const screenshots = getListValuesAfterHeading("### Screenshots");
+    const screenshots = parseUrls(getListValuesAfterHeading("### Screenshots"));
     const developersLines = getListValuesAfterHeading("### Developers");
 
     const developers = developersLines.map(dev => {
@@ -45,6 +45,19 @@ export function parseIssue(issueText) {
         developers: developers
     };
 
+}
+
+function parseUrl(link){
+    let urlMatch = link.match(/\((.*?)\)/);
+    return urlMatch ? urlMatch[1] : null;
+}
+
+function parseUrls(links){
+    const urls = [];
+    for (const link of links) {
+        urls.push(parseUrl(link));
+    }
+    return urls;
 }
 
 function getFileName(title){

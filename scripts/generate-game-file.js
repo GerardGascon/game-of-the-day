@@ -1,47 +1,109 @@
 import * as helper from "./issues/helper.js";
+import axios from "axios";
+import url from "url";
+import path from "path";
+import fs from "fs";
 
-const issueText = `
-### Game Title
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-Roses
+function getExtensionFromMimeType(mimeType) {
+    const mimeMap = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/gif': 'gif',
+        'image/bmp': 'bmp',
+        'image/webp': 'webp',
+        'image/svg+xml': 'svg',
+        'image/tiff': 'tiff'
+    };
 
-### Link
-https://arnaums1.itch.io/roses
+    return mimeMap[mimeType] || '';
+}
 
-### Store Name
+async function downloadImage(link, filePath) {
+    console.log(link);
+    let ext = "";
+    await axios({
+        url: link,
+        method: 'GET',
+        responseType: 'stream'
+    }).then(response => {
+        const mimeType = response.headers['content-type'];
+        const extension = getExtensionFromMimeType(mimeType);
 
-itch.io
+        if (!extension) {
+            console.error('Unable to determine the file extension.');
+            return;
+        }
 
-### Cover Image
+        const fileName = `${filePath}.${extension}`
+        response.data.pipe(fs.createWriteStream(fileName));
+        console.log(`Image saved to ${fileName}`);
 
-![Roses](roses.png)
+        ext = extension;
+    });
 
-### Description
+    return ext;
+}
 
-Ajuda'ns a fer florir el català!  
-Make a garden flourish while you write in Catalan language.
+async function saveImages(data) {
+    const screenshotsDir = path.join(__dirname, '..', 'public', 'images', 'screenshots', data.filename);
+    const coversDir = path.join(__dirname, '..', 'public', 'images', 'covers');
 
-### Screenshots
+    if (!fs.existsSync(screenshotsDir)) {
+        fs.mkdirSync(screenshotsDir);
+    }
 
-![Screenshot 1](roses/image1.png)  
-![Screenshot 2](roses/image2.png)
+    const images = [];
 
-### Developers
+    const downloadImages = async () => {
+        let i = 0;
+        for (const image of data.screenshots) {
+            const fileName = `screenshot-${i++}`;
+            const filePath = path.join(screenshotsDir, fileName);
+            console.log(`Downloading ${image} to ${filePath}`);
+            await downloadImage(image, filePath).then(extension => {
+                images.push(`${data.filename}/${fileName}.${extension}`);
+            });
+        }
+    };
 
-Geri - https://x.com/G_of_Geri
-Arnau - https://x.com/arnau555
-Raquel
-Índigo
-Iván
-`;
+    const downloadCover = async () => {
+        const fileName = data.filename;
+        const filePath = path.join(coversDir, fileName);
+        console.log(`Downloading ${data.cover} to ${filePath}`);
+        await downloadImage(data.cover, filePath).then(extension => {
+            data.cover = `${data.filename}.${extension}`;
+        });
+    };
+
+    await downloadImages();
+    await downloadCover();
+    return images;
+}
 
 const main = async() => {
     const body = process.env.ISSUE_BODY;
     const parsedData = helper.parseIssue(body);
-    const yamlContent = helper.buildYaml(parsedData);
-    console.log(yamlContent);
+
+    await saveImages(parsedData).then(images => {
+        parsedData.screenshots = images;
+    });
+
+    const data = {
+        name: parsedData.name,
+        link: parsedData.link,
+        link_name: parsedData.link_name,
+        cover: parsedData.cover,
+        description: parsedData.description,
+        screenshots: parsedData.screenshots,
+        developers: parsedData.developers
+    };
+
+    const yamlFilePath = path.join(__dirname, '..', 'data', `${parsedData.filename}.yaml`);
+    const yamlContent = helper.buildYaml(data);
+    fs.writeFileSync(yamlFilePath, yamlContent);
 };
-main().catch((err) => {
-    console.error(`Error: ${err.message}`);
-    process.exit(1);
-})
+
+main();

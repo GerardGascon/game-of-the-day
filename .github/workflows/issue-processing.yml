@@ -1,9 +1,8 @@
 name: Issue Processing
 
 on:
-  workflow_dispatch:
-#  issues:
-#    types: [opened]
+  issues:
+    types: [opened, edited]
 
 permissions:
   contents: write
@@ -27,7 +26,6 @@ jobs:
         run: |
           node scripts/generate-game-file.js
         env:
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_BODY: ${{ github.event.issue.body }}
 
       - name: Commit and push the file
