@@ -2,7 +2,7 @@ name: Issue Processing
 
 on:
   issues:
-    types: [opened]
+    types: [opened, labeled]
 
 permissions:
   contents: write
@@ -11,6 +11,7 @@ permissions:
 jobs:
   create-pr:
     runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'submission')
 
     steps:
       - name: Checkout repository
