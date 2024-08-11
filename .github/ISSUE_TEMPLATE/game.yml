@@ -1,6 +1,5 @@
-name: Game
-description: Add a game
-title: My Game
+name: Game Submission
+description: Submit your game to be showcased on the website at some point
 labels:
   - submission
 body:
