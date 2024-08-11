@@ -7,4 +7,34 @@ body:
   - type: input
     attributes:
       label: Game Title
-      description: Add your game title
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Game Link
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Store Page
+      description: The name of the store page where your game is available (e.g. itch.io, Steam, etc.)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Cover image
+      description: Remember it must be 16:9 or else it will be cropped to fit that aspect ratio.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Game Description
+      description: Short description of your game (120 characters max)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Game Description
+      description: Short description of your game (120 characters max)
+    validations:
+      required: true
