@@ -24,8 +24,10 @@ jobs:
 
       - name: Create issue file
         run: |
-          echo "### Issue Description" > ISSUE_${{ github.event.issue.number }}.md
-          echo "${{ github.event.issue.body }}" >> ISSUE_${{ github.event.issue.number }}.md
+          node scripts/create-game-file.js
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
 
       - name: Commit and push the file
         run: |
