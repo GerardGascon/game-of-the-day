@@ -1,0 +1,10 @@
+name: Game
+description: Add a game
+title: My Game
+labels:
+  - submission
+body:
+  - type: input
+    attributes:
+      label: Game Title
+      description: Add your game title
