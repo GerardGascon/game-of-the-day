@@ -38,7 +38,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b issue-${{ github.event.issue.number }}
           git add .
-          git commit -m "Add file for issue #${{ github.event.issue.number }}"
+          git commit -m "Add game submitted in #${{ github.event.issue.number }}" -m "Added game: ${{ github.event.issue.title }}"
           git push origin issue-${{ github.event.issue.number }}
 
       - name: Create Pull Request
@@ -48,8 +48,8 @@ jobs:
             github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `Add file for issue #${{ github.event.issue.number }}`,
+              title: `Add game submitted in #${{ github.event.issue.number }} (${{ github.event.issue.title }})`,
               head: `issue-${{ github.event.issue.number }}`,
               base: 'master',
-              body: 'This PR adds a file containing the description of issue #${{ github.event.issue.number }}.'
+              body: 'This PR adds the game submitted on issue #${{ github.event.issue.number }}.'
             })
