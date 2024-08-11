@@ -8,6 +8,15 @@ export function parseIssue(issueText) {
         return index < lines.length ? lines[index] : '';
     };
 
+    const findTextAfterHeading = (heading) => {
+        let index = lines.indexOf(heading) + 1;
+        let text = lines[index++];
+        while (!lines[index].startsWith('#')){
+            text += `\n${lines[index++]}`;
+        }
+        return index < lines.length ? text : '';
+    };
+
     const getListValuesAfterHeading = (heading) => {
         const index = lines.indexOf(heading) + 1;
         const values = [];
@@ -22,7 +31,7 @@ export function parseIssue(issueText) {
     const link = findValueAfterHeading("### Link");
     const link_name = findValueAfterHeading("### Store Name");
     const coverImage = parseUrl(findValueAfterHeading("### Cover Image"));
-    const description = findValueAfterHeading("### Description");
+    const description = findTextAfterHeading("### Description");
     const screenshots = parseUrls(getListValuesAfterHeading("### Screenshots"));
     const developersLines = getListValuesAfterHeading("### Developers");
 

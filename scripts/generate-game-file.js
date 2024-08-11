@@ -4,6 +4,41 @@ import url from "url";
 import path from "path";
 import fs from "fs";
 
+const issueText = `
+### Game Title
+
+ABC
+
+### Link
+
+https://geri8.itch.io/abc
+
+### Store Name
+
+itch.io
+
+### Cover Image
+
+![abc](https://github.com/user-attachments/assets/4fb9fe92-db85-4c4b-810f-82426b21dbbd)
+
+
+### Description
+
+ABC is a game about characters.
+You control the whole alphabet, from the letters A to Z.
+
+### Screenshots
+
+![screenshot-0](https://github.com/user-attachments/assets/c2906dc2-0ad3-4184-914f-a5f6db804874)
+![screenshot-1](https://github.com/user-attachments/assets/cd85114e-c615-4fab-beea-20f1c5b4974f)
+![screenshot-2](https://github.com/user-attachments/assets/c3d90f09-9b85-420f-9317-b2aa77e43908)
+
+
+### Developers
+
+Geri - https://x.com/G_of_Geri
+`;
+
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -84,8 +119,11 @@ async function saveImages(data) {
 }
 
 const main = async() => {
-    const body = process.env.ISSUE_BODY;
+    // const body = process.env.ISSUE_BODY;
+    const body = issueText;
     const parsedData = helper.parseIssue(body);
+
+    console.log(parsedData)
 
     await saveImages(parsedData).then(images => {
         parsedData.screenshots = images;
