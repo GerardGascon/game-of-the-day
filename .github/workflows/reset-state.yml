@@ -7,6 +7,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: reset-game
+  cancel-in-progress: false
+
 jobs:
   reset-state:
     runs-on: ubuntu-latest
