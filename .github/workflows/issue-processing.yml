@@ -2,7 +2,7 @@ name: Issue Processing
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [opened]
 
 permissions:
   contents: write
