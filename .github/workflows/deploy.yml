@@ -25,6 +25,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Fetch latest changes
+        run: |
+          git fetch origin
+          git checkout
+          git pull origin
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
