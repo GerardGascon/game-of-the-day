@@ -91,6 +91,10 @@ function generatePage(data){
     }
     const updatedText = $(`#developers`).html().replace('%names%', namesString);
     $(`#developers`).html(updatedText);
+
+    const image = $(`head`).html().replace('%og-image%', `https://gerardgascon.com/game-of-the-day/images/covers/${data.cover}`);
+    $(`head`).html(image);
+
     return $.html();
 }
 
