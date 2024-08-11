@@ -20,8 +20,6 @@ jobs:
 
       - name: Run custom script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          node scripts/issues/processor.js
+          node scripts/generate-game-file.js

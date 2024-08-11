@@ -1,34 +1,38 @@
 import YAML from "yaml";
 
 export function parseIssue(issueText) {
-    const lines = issueText.split('\n').map(line => line.trim());
+    const lines = issueText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
 
-    const gameTitle = lines.find(line => line.startsWith("**Game Title**:")).split(': ')[1].trim();
+    const findValueAfterHeading = (heading) => {
+        const index = lines.indexOf(heading) + 1;
+        return index < lines.length ? lines[index] : '';
+    };
+
+    const getListValuesAfterHeading = (heading) => {
+        const index = lines.indexOf(heading) + 1;
+        const values = [];
+        for (let i = index; i < lines.length && !lines[i].startsWith('### '); i++) {
+            values.push(lines[i].trim());
+        }
+        return values;
+    };
+
+    const gameTitle = findValueAfterHeading("### Game Title");
     const fileName = getFileName(gameTitle);
-    const link = lines.find(line => line.startsWith("**Link**:")).match(/\((.*?)\)/)[1].trim();
-    const link_name = lines.find(line => line.startsWith("**Store Name**:")).split(': ')[1].trim();
-    const coverImage = lines.find(line => line.startsWith("**Cover Image**:")).match(/!\[.*]\((.*?)\)/)[1].trim();
+    const link = findValueAfterHeading("### Link");
+    const link_name = findValueAfterHeading("### Store Name");
+    const coverImage = findValueAfterHeading("### Cover Image");
+    const description = findValueAfterHeading("### Description");
+    const screenshots = getListValuesAfterHeading("### Screenshots");
+    const developersLines = getListValuesAfterHeading("### Developers");
 
-    const descriptionStartIndex = lines.indexOf("### Description") + 1;
-    const descriptionEndIndex = lines.indexOf("### Screenshots");
-    const description = lines.slice(descriptionStartIndex, descriptionEndIndex).join('\n').trim();
-
-    const screenshotsStartIndex = lines.indexOf("### Screenshots") + 1;
-    const screenshotsEndIndex = lines.indexOf("### Developers");
-    const screenshots = lines.slice(screenshotsStartIndex, screenshotsEndIndex).filter(str => str !== '').slice(0, 3)
-        .map(line => line.match(/\(([^\)]+)\)/)[1].trim());
-
-    const developersStartIndex = lines.indexOf("### Developers") + 1;
-    const developersEndIndex = lines.indexOf("### End");
-    const developers = lines.slice(developersStartIndex, developersEndIndex).filter(str => str !== '')
-        .map(dev => {
-            const nameMatch = dev.match(/\*\*(.*?)\*\*/);
-            const linkMatch = dev.match(/\((.*?)\)/);
-            return {
-                name: nameMatch ? nameMatch[1] : null,
-                link: linkMatch ? linkMatch[1] : null
-            };
-        });
+    const developers = developersLines.map(dev => {
+        const nameMatch = dev.match(/^(.*?)( - (.*))?$/);
+        return {
+            name: nameMatch ? nameMatch[1].trim() : null,
+            link: nameMatch && nameMatch[3] ? nameMatch[3].trim() : null
+        };
+    });
 
     return {
         filename: fileName,
@@ -40,14 +44,15 @@ export function parseIssue(issueText) {
         screenshots: screenshots,
         developers: developers
     };
+
 }
 
 function getFileName(title){
     return title
-        .normalize('NFD')                    // Normalize to decompose accents
-        .replace(/[\u0300-\u036f]/g, '')     // Remove diacritical marks
-        .toLowerCase()                       // Convert to lowercase
-        .replace(/[^a-z0-9]+/g, '-')         // Replace non-alphanumeric characters with hyphens
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-+|-+$/g, '');
 }
 
