@@ -1,0 +1,14 @@
+name: ABC
+link: https://geri8.itch.io/abc
+link_name: itch.io
+cover: GerardGascon-abc.png
+description: |-
+  ABC is a game about characters.
+  You control the whole alphabet, from the letters A to Z.
+screenshots:
+  - GerardGascon-abc/screenshot-0.png
+  - GerardGascon-abc/screenshot-1.png
+  - GerardGascon-abc/screenshot-2.png
+developers:
+  - name: Geri
+    link: https://x.com/G_of_Geri
