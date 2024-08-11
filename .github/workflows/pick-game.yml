@@ -40,6 +40,9 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git stash
+          git pull
+          git stash apply
           git add .
           git commit -am "[Automated]: Deployed a new game"
           git push
