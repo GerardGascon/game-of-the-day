@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import url from "url";
+import YAML from "yaml";
 import * as cheerio from "cheerio";
 
 const __filename = url.fileURLToPath(import.meta.url);
@@ -9,10 +10,42 @@ const __dirname = path.dirname(__filename);
 const templateFilePath = path.join(__dirname, '..', 'templates', 'template.html');
 const htmlFilePath = path.join(__dirname, '..', 'public', 'index.html');
 const stateFilePath = path.join(__dirname, '..', 'data', 'state.json');
-const dataFilePath = path.join(__dirname, '..', 'data', 'data.json');
+const directoryPath = path.join(__dirname, '..', 'data');
 
 export function loadData() {
-    return JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
+    return readDir();
+}
+
+function readDir() {
+    const parsedDataList = []
+
+    try {
+        const files = fs.readdirSync(directoryPath);
+        const yamlFiles = files.filter(file => path.extname(file) === '.yaml');
+
+        yamlFiles.forEach(file => {
+            const filePath = path.join(directoryPath, file);
+
+            try {
+                const data = fs.readFileSync(filePath, 'utf8');
+
+                const parsedData = YAML.parse(data);
+                parsedDataList.push({
+                    name: file,
+                    content: parsedData
+                });
+            } catch(err) {
+                console.error(`Error parsing YAML file `, err);
+                return process.exit(1);
+            }
+        });
+
+    } catch (err) {
+        console.error(`Unable to scan directory `, err);
+        return process.exit(1);
+    }
+
+    return parsedDataList;
 }
 
 export function loadState(){
@@ -51,9 +84,9 @@ function generatePage(data){
     for (const i in data.developers) {
         if (i != 0)
             namesString += ', ';
-        const link = data.developers_link[i] !== null
-            ? `<a href="${data.developers_link[i]}" target="_blank">${data.developers[i]}</a>`
-            : `<a>${data.developers[i]}</a>`;
+        const link = data.developers[i].link != null
+            ? `<a href="${data.developers[i].link}" target="_blank">${data.developers[i].name}</a>`
+            : `<a>${data.developers[i].name}</a>`;
         namesString += link;
     }
     const updatedText = $(`#developers`).html().replace('%names%', namesString);

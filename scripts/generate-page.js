@@ -10,7 +10,7 @@ const dataSelected = data.filter(obj => obj.name === item)[0];
 state.push(item);
 
 saveState(state);
-createPageFile(dataSelected);
+createPageFile(dataSelected.content);
 
 function getRandomItem(items){
     const index = Math.floor(Math.random() * items.length);
