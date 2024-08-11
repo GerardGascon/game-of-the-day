@@ -34,7 +34,7 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: Game Description
-      description: Short description of your game (120 characters max)
+      label: Game Screenshots
+      description: Upload up to 3 different screenshots of your game
     validations:
-      required: true
+      required: false
