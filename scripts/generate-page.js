@@ -1,16 +1,13 @@
-import {createPageFile, getAvailableItems, loadState, saveState, loadData} from "./utils.js";
+import {getAvailableItems, loadState, saveState, loadData} from "./utils.js";
 
 const data = loadData();
 const state = loadState();
 
 let items = getAvailableItems(state, data);
-
 const item = getRandomItem(items);
-const dataSelected = data.filter(obj => obj.name === item)[0];
-state.push(item);
 
+state.push(item);
 saveState(state);
-createPageFile(dataSelected.content);
 
 function getRandomItem(items){
     const index = Math.floor(Math.random() * items.length);
