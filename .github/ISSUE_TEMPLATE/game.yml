@@ -27,7 +27,7 @@ body:
       description: Remember it must be 16:9 or else it will be cropped to fit that aspect ratio.
     validations:
       required: true
-  - type: input
+  - type: textarea
     attributes:
       label: Description
       description: Short description of your game (120 characters max)
