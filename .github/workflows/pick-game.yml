@@ -1,21 +1,20 @@
-name: 👾 Get Random Game and Deploy to GitHub Pages
+name: 👾 Get random game and commit the new state
 
 on:
   schedule:
     - cron: "24 2 * * *"
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  pick-game:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -43,14 +42,6 @@ jobs:
           git commit -am "[Automated]: Deployed a new game"
           git push
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './public'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  deploy:
+    needs: pick-game
+    uses: ./.github/workflows/deploy.yml
