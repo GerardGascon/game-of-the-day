@@ -1,8 +1,9 @@
 name: Issue Processing
 
 on:
-  issues:
-    types: [opened]
+  workflow_dispatch:
+#  issues:
+#    types: [opened]
 
 permissions:
   contents: write
