@@ -1,12 +1,14 @@
-name: "ABC"
-link: "https://geri8.itch.io/abc"
-link_name: "itch.io"
-cover: "abc.png"
-description: "ABC is a game about characters.\nYou control the whole alphabet, from the letters A to Z."
+name: ABC
+link: https://geri8.itch.io/abc
+link_name: itch.io
+cover: abc.png
+description: |-
+  ABC is a game about characters.
+  You control the whole alphabet, from the letters A to Z.
 screenshots:
-  - "abc/image1.png"
-  - "abc/image2.png"
-  - "abc/image3.png"
+  - abc/image1.png
+  - abc/image2.png
+  - abc/image3.png
 developers:
-  - name: "Geri"
-    link: "https://x.com/G_of_Geri"
+  - name: Geri
+    link: https://x.com/G_of_Geri
