@@ -16,7 +16,7 @@ body:
       required: true
   - type: input
     attributes:
-      label: Store Page
+      label: Store Name
       description: The name of the store page where your game is available (e.g. itch.io, Steam, etc.)
     validations:
       required: true
@@ -38,3 +38,13 @@ body:
       description: Upload up to 3 different screenshots of your game
     validations:
       required: false
+  - type: textarea
+    attributes:
+      label: Developers
+      description: List of all developers of the game (The social links are optional)
+      value: |
+        Geri - https://x.com/G_of_Geri
+        Name - Social
+        Name
+    validations:
+      required: true
