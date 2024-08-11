@@ -37,7 +37,7 @@ body:
       label: Screenshots
       description: Upload up to 3 different screenshots of your game
     validations:
-      required: false
+      required: true
   - type: textarea
     attributes:
       label: Developers
@@ -49,3 +49,11 @@ body:
         ...
     validations:
       required: true
+  - type: textarea
+    attributes:
+      label: Additional notes
+      description: |- 
+        Tell any additional information that the developer should know.
+        Or if you submitted more than 3 games, which one to remove.
+    validations:
+      required: false
