@@ -2,7 +2,9 @@ name: ABC
 link: https://geri8.itch.io/abc
 link_name: itch.io
 cover: abc.png
-description: ABC is a game about characters.\nYou control the whole alphabet, from the letters A to Z.
+description: |-
+  ABC is a game about characters.
+  You control the whole alphabet, from the letters A to Z.
 screenshots:
   - abc/screenshot-0.png
   - abc/screenshot-1.png
