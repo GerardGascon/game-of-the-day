@@ -42,7 +42,7 @@ body:
     attributes:
       label: Developers
       description: List of all developers of the game (The social links are optional)
-      value: |
+      placeholder: |
         Geri - https://x.com/G_of_Geri
         Name - Social
         Name
