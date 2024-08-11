@@ -1,0 +1,15 @@
+name: Test
+link: https://geri.com
+link_name: Test
+cover: GerardGascon-test.png
+description: Test
+screenshots:
+  - GerardGascon-test/screenshot-0.png
+developers:
+  - name: Name
+    link: https://example.com
+  - name: No Socials Name
+  - name: Geri Geri
+    link: https://test.com
+  - name: Socials
+    link: https://examplelink.com
