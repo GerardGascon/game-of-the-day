@@ -12,6 +12,18 @@ const htmlFilePath = path.join(__dirname, '..', 'public', 'index.html');
 const stateFilePath = path.join(__dirname, '..', 'data', 'state.json');
 const directoryPath = path.join(__dirname, '..', 'data');
 
+function generate_uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
+        function(c) {
+            var uuid = Math.random() * 16 | 0, v = c == 'x' ? uuid : (uuid & 0x3 | 0x8);
+            return uuid.toString(16);
+        });
+}
+
+export function generateUniqueIdentifier(){
+    return generate_uuidv4();
+}
+
 export function loadData() {
     return readDir();
 }
@@ -60,12 +72,12 @@ export function saveState(state){
     fs.writeFileSync(stateFilePath, JSON.stringify(state, null, 2), 'utf8');
 }
 
-export function createPageFile(dataSelected){
-    const page = generatePage(dataSelected);
+export function createPageFile(dataSelected, version){
+    const page = generatePage(dataSelected, version);
     fs.writeFileSync(htmlFilePath, page);
 }
 
-function generatePage(data){
+function generatePage(data, version){
     const htmlContent = fs.readFileSync(templateFilePath, 'utf8');
     const $ = cheerio.load(htmlContent);
 
@@ -95,6 +107,8 @@ function generatePage(data){
     const image = $(`head`).html().replace('%og-image%', `https://gerardgascon.com/game-of-the-day/images/covers/${data.cover}`);
     $(`head`).html(image);
 
+    $('meta[name="website-id"]').attr('content', `${version}`);
+
     return $.html();
 }
 
@@ -103,11 +117,18 @@ export function getAvailableItems(state, data){
         state.length = 0;
 
     let items = [];
-    for (const i in data) {
-        if (state.includes(data[i].name))
+    for (const dat of data) {
+        let contains = false;
+        for (const stat of state) {
+            if (stat.item === dat.name){
+                contains = true;
+                break;
+            }
+        }
+        if (contains)
             continue;
 
-        items.push(data[i].name);
+        items.push(dat.name);
     }
     return items;
 }
