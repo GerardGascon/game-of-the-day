@@ -10,6 +10,7 @@ body {
     height: 100%;
     background-color: white;
     transition: 1s;
+    user-select: none;
 }
 
 #overlay h1 {
@@ -43,6 +44,13 @@ body {
     margin-bottom: -128px;
     animation: rotate 10s linear infinite;
     transition: .2s;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #sun.hide {
