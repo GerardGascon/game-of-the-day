@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function revealWebsite() {
         scrollToTopButton.classList.add('hide');
+        document.body.style.overflow = 'auto';
 
         overlayPanel.style.opacity = '0';
         setTimeout(() => {
