@@ -1,0 +1,12 @@
+name: Geri
+link: https://example.com
+link_name: itch.io
+cover: GerardGascon-geri.png
+description: |-
+  hello
+  hello
+screenshots:
+  - GerardGascon-geri/screenshot-0.png
+  - GerardGascon-geri/screenshot-1.png
+developers:
+  - {}
