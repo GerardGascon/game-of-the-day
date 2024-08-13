@@ -9,9 +9,12 @@
 
     <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="style.css">
+    <script src="../navigation.js"></script>
 
     <meta property="og:title" content="Game of the Day - About">
     <meta property="og:type" content="website">
+
+    <script src="https://kit.fontawesome.com/28575038bf.js" crossorigin="anonymous"></script>
 
     <link rel="icon" href="../images/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
@@ -19,14 +22,27 @@
     <link rel="apple-touch-icon" href="../images/favicon/apple-touch-icon.png">
 </head>
 <body>
+<div class="navigation">
+    <div class="title">
+        <p><a class="site-name" href="../">Game of the Day</a></p>
+    </div>
+    <div class="elements">
+        <a href="../">Landing Page</a>
+        <a href="./">About</a>
+        <a href="https://submit.gameoftheday.org" target="_blank">Submit Your Game</a>
+    </div>
+</div>
 <div class="heading">
-    <p><a href="../">Game of the Day</a></p>
-    <p><b><a href="./">About</a></b></p>
+    <p><a class="site-name" href="../">Game of the Day</a></p>
+    <button id="navigation-button"><i class="fa-solid fa-bars"></i></button>
 </div>
 <div class="container">
     <div class="details">
         <div class="header">
-            <h1>Game of the Day</h1>
+            <img id="sun" src="../images/sun_3d.png">
+            <div class="header-bg">
+                <h1>Game of the Day</h1>
+            </div>
         </div>
         <div class="description">
             <p><b>Game of the Day</b> is a small initiative to promote a small free game each day.</p>
@@ -60,7 +76,7 @@
             </ul>
             <h2>Disclaimer</h2>
             <p>All the submissions are entirely reviewed by me, and I reserve the right to reject the games if they don't
-                completely fit the website.
+                completely fit the website's theme.
             </p>
         </div>
         <hr>
@@ -71,6 +87,7 @@
             <a href="https://github.com/GerardGascon/game-of-the-day" target="_blank">GitHub</a>
         </p>
     </div>
+    <div id="nav-menu-block"></div>
 </div>
 </body>
 </html>

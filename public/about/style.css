@@ -2,6 +2,7 @@
     text-align: center;
     font-weight: 900;
     font-size: 50px;
+    margin-top: 0;
 }
 
 .container .details {
@@ -20,4 +21,37 @@
 
 .container a {
     color: var(--highlight-color);
+}
+
+#sun {
+    margin-bottom: -148px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: rotate 40s linear infinite;
+    display: block;
+    transition: .2s;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header-bg {
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 90%, rgba(255, 255, 255, 0));
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes rotate {
+    from {
+        rotate: 0deg;
+    }
+    to {
+        rotate: 360deg;
+    }
 }
