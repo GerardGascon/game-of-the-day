@@ -18,10 +18,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Remove file
+      - name: Remove state.json file
         run: rm data/state.json
 
-      - name: Commit removed file
+      - name: Commit removed state.json
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
