@@ -10,11 +10,14 @@
     <link rel="stylesheet" href="reveal.css">
 
     <script src="reveal.js"></script>
+    <script src="navigation.js"></script>
     <meta name="website-id" content="" />
 
     <meta property="og:title" content="Game of the Day" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="%og-image%" />
+
+    <script src="https://kit.fontawesome.com/28575038bf.js" crossorigin="anonymous"></script>
 
     <link rel="icon" href="./images/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
@@ -22,9 +25,19 @@
     <link rel="apple-touch-icon" href="./images/favicon/apple-touch-icon.png">
 </head>
 <body>
+<div class="navigation">
+    <div class="title">
+        <p><a class="site-name" href="./">Game of the Day</a></p>
+    </div>
+    <div class="elements">
+        <a href="./">Landing Page</a>
+        <a href="about">About</a>
+        <a href="https://submit.gameoftheday.org" target="_blank">Submit Your Game</a>
+    </div>
+</div>
 <div class="heading">
-    <p><b><a href="./">Game of the Day</a></b></p>
-    <p><a href="about">About</a></p>
+    <p><a class="site-name" href="./">Game of the Day</a></p>
+    <button id="navigation-button"><i class="fa-solid fa-bars"></i></button>
 </div>
 <div class="container">
     <img id="cover" src="" alt="Game Cover">
@@ -45,6 +58,7 @@
         </p>
     </div>
 </div>
+<div id="nav-menu-block"></div>
 <div id="overlay">
     <div class="overlay-contents">
         <img id="sun" src="images/sun_3d.png"/>
