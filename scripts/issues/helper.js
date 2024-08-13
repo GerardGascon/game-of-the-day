@@ -68,11 +68,6 @@ function getFileName(title){
 }
 
 export function buildYaml(parsedData) {
-    const developers = parsedData.developers.map(dev => ({
-        name: dev.name,
-        ...(dev.link ? { link: dev.link } : {})
-    }));
-
     const data = {
         filename: parsedData.filename,
         name: parsedData.name,
