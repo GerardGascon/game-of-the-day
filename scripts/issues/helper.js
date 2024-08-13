@@ -20,31 +20,7 @@ export function parseIssue(issueText) {
     const getDevelopers = (heading) => {
         let index = lines.indexOf(heading) + 1;
         let text = lines[index++];
-        const items = text.split('; ');
-        const jsonArray = [];
-
-        items.forEach(item => {
-            item = item.trim();
-            if (!item) return;
-
-            const pairs = item.split(', ');
-            const itemObj = {};
-
-            pairs.forEach(pair => {
-                const [key, value] = pair.split(': ').map(str => str.trim());
-                if (key) {
-                    if (key === 'Developer Name'){
-                        itemObj['name'] = value || "";
-                    }
-                    if (key === 'Social Network Link' && value){
-                        itemObj['link'] = value || "";
-                    }
-                }
-            });
-
-            jsonArray.push(itemObj);
-        });
-        return jsonArray;
+        return text.split(',');
     };
 
     const gameTitle = findValueAfterHeading("### Game Title");
@@ -54,7 +30,7 @@ export function parseIssue(issueText) {
     const coverImage = parseUrl(findValueAfterHeading("### Cover Image"));
     const description = findTextAfterHeading("### Description");
     const screenshots = parseUrls(findValueAfterHeading("### Screenshots"));
-    const developersLines = getDevelopers("### Developers");
+    const developers = getDevelopers("### Developers");
 
     return {
         filename: fileName,
@@ -64,7 +40,7 @@ export function parseIssue(issueText) {
         cover: coverImage,
         description: description,
         screenshots: screenshots,
-        developers: developersLines
+        developers: developers
     };
 
 }
@@ -105,7 +81,7 @@ export function buildYaml(parsedData) {
         cover: parsedData.cover,
         description: parsedData.description,
         screenshots: parsedData.screenshots,
-        developers: developers
+        developers: parsedData.developers
     };
 
     return YAML.stringify(data, { lineWidth: 0 });

@@ -96,9 +96,7 @@ function generatePage(data, version){
     for (const i in data.developers) {
         if (i != 0)
             namesString += ', ';
-        const link = data.developers[i].link != null
-            ? `<a href="${data.developers[i].link}" target="_blank">${data.developers[i].name}</a>`
-            : `<a>${data.developers[i].name}</a>`;
+        const link = `<a>${data.developers[i]}</a>`;
         namesString += link;
     }
     const updatedText = $(`#developers`).html().replace('%names%', namesString);
