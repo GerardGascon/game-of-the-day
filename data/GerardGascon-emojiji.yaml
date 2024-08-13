@@ -1,0 +1,12 @@
+name: Emojiji
+link: https://geri8.itch.io/emojiji
+link_name: itch.io
+cover: GerardGascon-emojiji.png
+description: |-
+  Completa los chistes malos con tu colega.
+  Pero ojo, solo podéis hablar usando emojis.
+screenshots:
+  - GerardGascon-emojiji/screenshot-0.png
+developers:
+  - name: Geri
+    link: https://twitter.com/G_of_Geri
