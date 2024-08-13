@@ -1,0 +1,17 @@
+name: Test
+link: https://geri.com
+link_name: itch.io
+cover: GerardGascon-test.png
+description: |-
+  hola
+  hola
+screenshots:
+  - GerardGascon-test/screenshot-0.png
+  - GerardGascon-test/screenshot-1.png
+  - GerardGascon-test/screenshot-2.png
+developers:
+  - name: Gerard Gascón
+    link: https://geri.com
+  - name: Gerard Gascón
+    link: https://geri.com
+  - name: Gerard Gascón
