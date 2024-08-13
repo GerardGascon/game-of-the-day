@@ -17,13 +17,34 @@ export function parseIssue(issueText) {
         return index < lines.length ? text : '';
     };
 
-    const getListValuesAfterHeading = (heading) => {
-        const index = lines.indexOf(heading) + 1;
-        const values = [];
-        for (let i = index; i < lines.length && !lines[i].startsWith('### '); i++) {
-            values.push(lines[i].trim());
-        }
-        return values;
+    const getDevelopers = (heading) => {
+        let index = lines.indexOf(heading) + 1;
+        let text = lines[index++];
+        const items = text.split('; ');
+        const jsonArray = [];
+
+        items.forEach(item => {
+            item = item.trim();
+            if (!item) return;
+
+            const pairs = item.split(', ');
+            const itemObj = {};
+
+            pairs.forEach(pair => {
+                const [key, value] = pair.split(': ').map(str => str.trim());
+                if (key) {
+                    if (key === 'Developer Name'){
+                        itemObj['name'] = value || "";
+                    }
+                    if (key === 'Social Network Link' && value){
+                        itemObj['link'] = value || "";
+                    }
+                }
+            });
+
+            jsonArray.push(itemObj);
+        });
+        return jsonArray;
     };
 
     const gameTitle = findValueAfterHeading("### Game Title");
@@ -33,15 +54,7 @@ export function parseIssue(issueText) {
     const coverImage = parseUrl(findValueAfterHeading("### Cover Image"));
     const description = findTextAfterHeading("### Description");
     const screenshots = parseUrls(findValueAfterHeading("### Screenshots"));
-    const developersLines = getListValuesAfterHeading("### Developers");
-
-    const developers = developersLines.map(dev => {
-        const nameMatch = dev.match(/^(.*?)( - (.*))?$/);
-        return {
-            name: nameMatch ? nameMatch[1].trim() : null,
-            link: nameMatch && nameMatch[3] ? nameMatch[3].trim() : null
-        };
-    });
+    const developersLines = getDevelopers("### Developers");
 
     return {
         filename: fileName,
@@ -51,7 +64,7 @@ export function parseIssue(issueText) {
         cover: coverImage,
         description: description,
         screenshots: screenshots,
-        developers: developers
+        developers: developersLines
     };
 
 }
