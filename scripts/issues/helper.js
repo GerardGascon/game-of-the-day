@@ -32,7 +32,7 @@ export function parseIssue(issueText) {
     const link_name = findValueAfterHeading("### Store Name");
     const coverImage = parseUrl(findValueAfterHeading("### Cover Image"));
     const description = findTextAfterHeading("### Description");
-    const screenshots = parseUrls(getListValuesAfterHeading("### Screenshots"));
+    const screenshots = parseUrls(findValueAfterHeading("### Screenshots"));
     const developersLines = getListValuesAfterHeading("### Developers");
 
     const developers = developersLines.map(dev => {
@@ -62,11 +62,11 @@ function parseUrl(link){
 }
 
 function parseUrls(links){
-    const urls = [];
-    for (const link of links) {
-        urls.push(parseUrl(link));
-    }
-    return urls;
+    return links.split(',https://').map((url, index) => {
+        if (index === 0)
+            return url; // The first URL didn't get split off the delimiter
+        return `https://${url}`;
+    });
 }
 
 function getFileName(title){
