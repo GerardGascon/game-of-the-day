@@ -1,8 +1,6 @@
 name: 👾 Get random game and commit the new state
 
 on:
-  schedule:
-    - cron: "24 2 * * *"
   workflow_dispatch:
   workflow_call:
 
