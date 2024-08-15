@@ -6,8 +6,8 @@ description: |-
   This is a game about pressing the red button...
   But you use domino pieces to press it.
 screenshots:
-  - GerardGascon-domyno/screenshot-0.png
-  - GerardGascon-domyno/screenshot-1.png
-  - GerardGascon-domyno/screenshot-2.png
+  - screenshot-0.png
+  - screenshot-1.png
+  - screenshot-2.png
 developers:
   - Geri

@@ -11,6 +11,10 @@ const templateFilePath = path.join(__dirname, '..', 'templates', 'template.html'
 const htmlFilePath = path.join(__dirname, '..', 'public', 'index.html');
 const stateFilePath = path.join(__dirname, '..', 'data', 'state.json');
 const directoryPath = path.join(__dirname, '..', 'data');
+const coversPath = path.join(__dirname, '..', 'content', 'covers');
+const dstCoversPath = path.join(__dirname, '..', 'public', 'images', 'cover');
+const screenshots = path.join(__dirname, '..', 'content', 'screenshots');
+const dstScreenshots = path.join(__dirname, '..', 'public', 'images', 'screenshots');
 
 function generate_uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
@@ -72,9 +76,54 @@ export function saveState(state){
     fs.writeFileSync(stateFilePath, JSON.stringify(state, null, 2), 'utf8');
 }
 
-export function createPageFile(dataSelected, version){
+function findFile(directory, nameWithoutExtension) {
+    const files = fs.readdirSync(directory);
+
+    for (const file of files) {
+        const fileWithoutExtension = path.parse(file).name;
+
+        if (fileWithoutExtension === nameWithoutExtension) {
+            return file;  // Return the full file name including the extension
+        }
+    }
+    return null;
+}
+
+function copy(src, dest) {
+    const stat = fs.statSync(src);
+
+    if (stat.isDirectory()) {
+        if (!fs.existsSync(dest)) {
+            fs.mkdirSync(dest);
+        }
+
+        const entries = fs.readdirSync(src);
+
+        for (let entry of entries) {
+            const srcPath = path.join(src, entry);
+            const destPath = path.join(dest, entry);
+
+            copy(srcPath, destPath);
+        }
+    } else {
+        fs.copyFileSync(src, dest);
+    }
+}
+
+export function createPageFile(dataSelected, version, fileName){
     const page = generatePage(dataSelected, version);
     fs.writeFileSync(htmlFilePath, page);
+
+    const name = fileName.replace('.yaml', '');
+    const sourceFileName = findFile(coversPath, name);
+
+    if (!fs.existsSync(dstCoversPath))
+        fs.mkdirSync(dstCoversPath);
+    fs.copyFileSync(path.join(coversPath, sourceFileName), path.join(dstCoversPath, sourceFileName));
+
+    if (!fs.existsSync(dstScreenshots))
+        fs.mkdirSync(dstScreenshots);
+    copy(path.join(screenshots, name), dstScreenshots);
 }
 
 function generatePage(data, version){
@@ -83,7 +132,7 @@ function generatePage(data, version){
 
     $(`#game-title`).html(data.name);
     $(`.game-link`).html(data.link_name).attr('href', data.link);
-    $(`#cover`).attr('src', `images/covers/${data.cover}`);
+    $(`#cover`).attr('src', `images/cover/${data.cover}`);
     $(`#description`).html(data.description.replace('\n', '<br>'));
 
     $(`#screenshots`).html('');
@@ -106,7 +155,7 @@ function generatePage(data, version){
     const updatedText = $(`#developers`).html().replace('%names%', namesString);
     $(`#developers`).html(updatedText);
 
-    const image = $(`head`).html().replace('%og-image%', `https://gerardgascon.com/game-of-the-day/images/covers/${data.cover}`);
+    const image = $(`head`).html().replace('%og-image%', `https://gameoftheday.org/images/cover/${data.cover}`);
     $(`head`).html(image);
 
     $('meta[name="website-id"]').attr('content', `${version}`);

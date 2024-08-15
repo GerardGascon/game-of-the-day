@@ -64,7 +64,7 @@ async function saveImages(data) {
             const filePath = path.join(screenshotsDir, fileName);
             console.log(`Downloading ${image} to ${filePath}`);
             await downloadImage(image, filePath).then(extension => {
-                images.push(`${data.filename}/${fileName}.${extension}`);
+                images.push(`${fileName}.${extension}`);
             });
         }
     };
