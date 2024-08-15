@@ -48,8 +48,8 @@ async function downloadImage(link, filePath) {
 }
 
 async function saveImages(data) {
-    const screenshotsDir = path.join(__dirname, '..', 'public', 'images', 'screenshots', data.filename);
-    const coversDir = path.join(__dirname, '..', 'public', 'images', 'covers');
+    const screenshotsDir = path.join(__dirname, '..', 'content', 'screenshots', data.filename);
+    const coversDir = path.join(__dirname, '..', 'content', 'covers');
 
     if (!fs.existsSync(screenshotsDir)) {
         fs.mkdirSync(screenshotsDir);
