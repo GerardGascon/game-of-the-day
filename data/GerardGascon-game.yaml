@@ -1,0 +1,10 @@
+name: Game
+link: https://asdf.asdf
+link_name: asdf
+cover: GerardGascon-game.jpg
+description: hello
+screenshots:
+  - screenshot-0.png
+  - screenshot-1.png
+developers:
+  - Geri
