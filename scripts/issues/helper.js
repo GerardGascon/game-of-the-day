@@ -5,32 +5,31 @@ export function parseIssue(issueText) {
 
     const findValueAfterHeading = (heading) => {
         const index = lines.indexOf(heading) + 1;
-        return index < lines.length ? lines[index] : '';
+        return index <= lines.length ? lines[index] : '';
     };
 
     const findTextAfterHeading = (heading) => {
         let index = lines.indexOf(heading) + 1;
         let text = lines[index++];
-        while (!lines[index].startsWith('#')){
+        while (index < lines.length && !lines[index].startsWith('#')){
             text += `\n${lines[index++]}`;
         }
-        return index < lines.length ? text : '';
+        return index <= lines.length ? text : '';
     };
 
-    const getDevelopers = (heading) => {
-        let index = lines.indexOf(heading) + 1;
-        let text = lines[index++];
-        return text.split(',');
+    const getDevelopers = (text) => {
+        return text.split('\n');
     };
 
     const gameTitle = findValueAfterHeading("### Game Title");
     const fileName = getFileName(gameTitle);
     const link = findValueAfterHeading("### Link");
     const link_name = findValueAfterHeading("### Store Name");
-    const coverImage = parseUrl(findValueAfterHeading("### Cover Image"));
+    const coverImage = parseUrl(findTextAfterHeading("### Cover Image"));
     const description = findTextAfterHeading("### Description");
-    const screenshots = parseUrls(findValueAfterHeading("### Screenshots"));
-    const developers = getDevelopers("### Developers");
+    const screenshots = parseUrls(findTextAfterHeading("### Screenshots"));
+    const developers = getDevelopers(findTextAfterHeading("### Developers"));
+    console.log(developers);
 
     return {
         filename: fileName,
@@ -46,16 +45,20 @@ export function parseIssue(issueText) {
 }
 
 function parseUrl(link){
-    let urlMatch = link.match(/\((.*?)\)/);
-    return urlMatch ? urlMatch[1] : null;
+    const urlRegex = /(https?:\/\/\S+)/g;
+    const matches = link.match(urlRegex);
+    return matches;
 }
 
 function parseUrls(links){
-    return links.split(',https://').map((url, index) => {
-        if (index === 0)
-            return url; // The first URL didn't get split off the delimiter
-        return `https://${url}`;
-    });
+    const urlRegex = /url:\s*(https?:\/\/\S+)/g;
+    const urls = [];
+    const matches = links.matchAll(urlRegex);
+
+    for (const match of matches) {
+        urls.push(match[1]); // match[1] contains the URL
+    }
+    return urls;
 }
 
 function getFileName(title){
