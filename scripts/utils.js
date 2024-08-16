@@ -149,7 +149,9 @@ function generatePage(data, version){
             else
                 namesString += ', ';
         }
-        const link = `${data.developers[i]}`;
+
+
+        const link = extractAndCreateAnchor(data.developers[i]);
         namesString += link;
     }
     const updatedText = $(`#developers`).html().replace('%names%', namesString);
@@ -161,6 +163,20 @@ function generatePage(data, version){
     $('meta[name="website-id"]').attr('content', `${version}`);
 
     return $.html();
+}
+
+function extractAndCreateAnchor(inputStr) {
+    const regex = /(.*)\((.*)\)/;
+    const match = inputStr.match(regex);
+
+    if (match && match.length === 3) {
+        const name = match[1];
+        const link = match[2];
+
+        return `<a href="${link}" target="_blank">${name.trimEnd()}</a>`;
+    } else {
+        return inputStr.trimEnd();
+    }
 }
 
 export function getAvailableItems(state, data){
