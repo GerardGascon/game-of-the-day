@@ -1,0 +1,13 @@
+name: GeriTest
+link: https://gerardgascon.com
+link_name: itch.io
+cover: GerardGascon-geritest.png
+description: Hello, this is a test
+screenshots:
+  - screenshot-0.png
+  - screenshot-1.png
+  - screenshot-2.png
+developers:
+  - Geri (https://gerardgascon.com)
+  - geri2
+  - geri3 (https://geri8.itch.io)
