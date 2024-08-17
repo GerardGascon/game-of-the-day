@@ -4,13 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const navigation = document.querySelector('.navigation');
 
     function switchNavigationState() {
-        if (navigation.classList.contains('show')) {
-            navigation.classList.remove('show');
-            navigationBlock.classList.remove('show');
-        }else {
-            navigation.classList.add('show');
-            navigationBlock.classList.add('show');
-        }
+        navigation.classList.toggle('show');
+        navigationBlock.classList.toggle('show');
+        navigationButton.classList.toggle('open');
     }
 
     navigationButton.addEventListener('click', switchNavigationState);

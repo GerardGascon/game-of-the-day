@@ -5,7 +5,7 @@ body {
     padding: 0 10px 80px;
     margin: 0;
 
-    --highlight-color: #00b4ff;
+    --highlight-color: #6da87a;
     --navigation-transition: 0.3s;
 }
 
@@ -50,18 +50,6 @@ body::before {
     font-size: 2rem;
     font-weight: 900;
     margin-left: 15px;
-}
-
-#navigation-button {
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-
-    font-size: 2rem;
-    font-weight: 900;
-    z-index: 11;
-    margin-right: 15px;
 }
 
 .navigation {
@@ -161,5 +149,43 @@ body::before {
 }
 
 hr {
-    border: 1px solid rgba(0, 0, 0, .1);
+    border: 1px solid #edfaf0;
+}
+
+.menu_btn {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 11;
+    margin-right: 15px;
+}
+
+.menu_btn .line {
+    width: 31px;
+    height: 3px;
+    background-color: #000;
+    transform-origin: left;
+
+    transition: transform 0.5s ease, opacity 0.2s ease;
+}
+
+.menu_btn .middle_line {
+    transition-delay: 0.3s;
+}
+
+.menu_btn.open .middle_line {
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.menu_btn.open .top_line {
+    transform: rotate(45deg);
+}
+
+.menu_btn.open .bottom_line {
+    transform: rotate(-45deg);
 }
