@@ -50,6 +50,13 @@ body::before {
     font-size: 2rem;
     font-weight: 900;
     margin-left: 15px;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .navigation {
@@ -99,6 +106,9 @@ body::before {
     font-weight: 600;
     color: #31663c;
     text-decoration: none;
+
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
 }
 .navigation .elements a:hover {
     text-decoration: underline;
@@ -116,6 +126,9 @@ body::before {
 .details a {
     text-decoration: none;
     color: var(--highlight-color);
+
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
 }
 .details a:hover {
     text-decoration: underline;
@@ -162,6 +175,13 @@ hr {
 
     z-index: 11;
     margin-right: 15px;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .menu_btn .line {
