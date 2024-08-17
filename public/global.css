@@ -27,7 +27,7 @@ body::before {
 
     opacity: 0.5;
 
-    background-color: white;
+    background-color: #edfaf0;
     background-image: url(images/bg_puttern.png);
     background-position: 50% 0;
     background-attachment: fixed;
