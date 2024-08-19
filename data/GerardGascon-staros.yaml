@@ -1,0 +1,13 @@
+name: StarOS
+link: https://store.steampowered.com/app/2434760/StarOS/
+link_name: Steam
+cover: GerardGascon-staros.png
+description: |-
+  Tired of only seeing text on your personal computer?
+  Get ready to make the leap to the graphic dimension with this new OS, the future is now!
+screenshots:
+  - screenshot-0.jpg
+  - screenshot-1.jpg
+  - screenshot-2.jpg
+developers:
+  - José Sanz "Josyan" (www.josyan.com)
