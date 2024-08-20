@@ -1,0 +1,9 @@
+name: autoball
+link: https://torcado.itch.io/autoball
+link_name: itch.io
+cover: GerardGascon-autoball.png
+description: every 10 seconds, a ball is fired onto the board.
+screenshots:
+  - screenshot-0.png
+developers:
+  - torcado (https://torcado.com)
