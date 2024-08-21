@@ -76,6 +76,13 @@
     justify-content: space-between;
     cursor: pointer;
     transition-duration: 0.25s;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .description .question:hover {
