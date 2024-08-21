@@ -54,7 +54,7 @@ jobs:
             github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `Add game submitted in #${{ github.event.issue.number }} (${{ github.event.issue.title }})`,
+              title: `${{ github.event.issue.title }}`,
               head: `issue-${{ github.event.issue.number }}`,
               base: 'master',
               body: 'This PR adds the game submitted on issue #${{ github.event.issue.number }}.'
