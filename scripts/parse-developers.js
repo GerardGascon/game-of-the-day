@@ -33,7 +33,5 @@ const sortedDeveloperProjects = Object.entries(developerProjects)
 
 const sortedDeveloperProjectsObj = Object.fromEntries(sortedDeveloperProjects);
 fs.writeFileSync("developers.json", JSON.stringify(sortedDeveloperProjectsObj, null, 2), 'utf8');
-const exists = fs.existsSync("developers.json")
-console.log(exists);
 
 console.log(sortedDeveloperProjectsObj);

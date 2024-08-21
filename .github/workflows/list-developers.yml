@@ -25,5 +25,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: developers-json
-          path: scripts/developers.json
+          path: developers.json
           if-no-files-found: error
