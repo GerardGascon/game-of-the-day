@@ -84,7 +84,7 @@
 
 .icon {
     margin-left: 1rem;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     transform: rotate(0deg);
