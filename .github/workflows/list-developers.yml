@@ -27,3 +27,4 @@ jobs:
           name: developers-json
           path: developers.json
           if-no-files-found: error
+          compression-level: 0
