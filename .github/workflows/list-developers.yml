@@ -26,3 +26,4 @@ jobs:
         with:
           name: developers-json
           path: scripts/developers.json
+          if-no-files-found: error
