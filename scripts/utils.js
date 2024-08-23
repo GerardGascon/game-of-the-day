@@ -157,9 +157,6 @@ function generatePage(data, version){
     const updatedText = $(`#developers`).html().replace('%names%', namesString);
     $(`#developers`).html(updatedText);
 
-    const image = $(`head`).html().replaceAll('%og-image%', `https://gameoftheday.org/images/cover/${data.cover}`);
-    $(`head`).html(image);
-
     $('meta[name="website-id"]').attr('content', `${version}`);
 
     return $.html();
