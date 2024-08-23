@@ -132,12 +132,12 @@ function generatePage(data, version){
 
     $(`#game-title`).html(data.name);
     $(`.game-link`).html(data.link_name).attr('href', data.link);
-    $(`#cover`).attr('src', `images/cover/${data.cover}`);
+    $(`#cover`).attr('src', `images/cover/${data.cover}?${Date.now()}`);
     $(`#description`).html(data.description.replace('\n', '<br>'));
 
     $(`#screenshots`).html('');
     for (const i in data.screenshots) {
-        const imgElement = `<img src="images/screenshots/${data.screenshots[i]}" alt="Screenshot ${i+1}">`;
+        const imgElement = `<img src="images/screenshots/${data.screenshots[i]}?${Date.now()}" alt="Screenshot ${i+1}">`;
         $(`#screenshots`).append(imgElement);
     }
 
