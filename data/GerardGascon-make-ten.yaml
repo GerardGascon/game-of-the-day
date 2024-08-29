@@ -1,0 +1,9 @@
+name: Make Ten
+link: https://pancelor.itch.io/make-ten
+link_name: itch.io
+cover: GerardGascon-make-ten.png
+description: Select numbers that add to ten, to remove them from the board.
+screenshots:
+  - screenshot-0.png
+developers:
+  - pancelor (https://pancelor.com)
