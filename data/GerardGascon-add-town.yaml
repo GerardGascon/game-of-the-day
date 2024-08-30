@@ -1,0 +1,12 @@
+name: Add Town
+link: https://petrmosevich.itch.io/add-town
+link_name: itch.io
+cover: GerardGascon-add-town.png
+description: |-
+  Sliding tile puzzle game with funny graphics.
+  Combine same tiles to create new ones.
+screenshots:
+  - screenshot-0.png
+  - screenshot-1.png
+developers:
+  - Petr Mosevich (https://x.com/petrmosevich)
