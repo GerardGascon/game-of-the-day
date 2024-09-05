@@ -25,11 +25,20 @@
 #game-title {
     font-weight: 900;
     font-size: 50px;
+    line-height: 5rem;
 }
 
 .game-title .developer {
     font-weight: 300;
-    font-size: 50px;
+    font-size: 35px;
+    line-height: 4rem;
+
+    padding: 0 10px;
+    border: 2px solid var(--highlight-color);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     text-decoration: none;
     color: var(--highlight-color);
@@ -40,6 +49,45 @@
     -webkit-user-select: none;
     -ms-user-select: none;
     -webkit-tap-highlight-color: transparent;
+
+    transition-duration: 0.1s;
+}
+
+.download-link {
+    font-weight: 300;
+    font-size: 35px;
+    line-height: 4rem;
+
+    padding: 0 10px;
+    border: 2px solid var(--highlight-color);
+    border-radius: 16px;
+    display: table;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    text-decoration: none;
+    color: var(--highlight-color);
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    transition-duration: 0.1s;
+}
+
+.download-link-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.download-link:hover,
+.game-title .developer:hover {
+    transform: scale(1.05);
+    text-decoration: none !important;
 }
 
 .container p {

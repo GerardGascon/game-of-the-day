@@ -132,6 +132,7 @@ function generatePage(data, version){
 
     $(`#game-title`).html(data.name);
     $(`.game-link`).html(data.link_name).attr('href', data.link);
+    $(`.developer.game-link`).html("Play it Now");
     $(`#cover`).attr('src', `images/cover/${data.cover}?${Date.now()}`);
     $(`#description`).html(data.description.replace('\n', '<br>'));
 
