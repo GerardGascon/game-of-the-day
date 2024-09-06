@@ -1,0 +1,17 @@
+{
+  "name": "Game of the Day",
+  "short_name": "Game of the Day",
+  "theme_color": "#f6bd2f",
+  "background_color": "#f6fcf7",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "https://gameoftheday.org/",
+  "description": "Discover a random free game each day.",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "https://christine.website/static/img/avatar.png",
+      "sizes": "1024x1024"
+    }
+  ]
+}
