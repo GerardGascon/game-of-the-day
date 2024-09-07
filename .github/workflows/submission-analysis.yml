@@ -26,7 +26,7 @@ jobs:
         id: read-json
         run: |
           developers_json=$(cat developers.json)
-          echo "::set-output name=developers_json::$developers_json"
+          echo "developers_json=$developers_json" >> $GITHUB_OUTPUT
 
       - name: Comment on issue with developers list
         uses: actions/github-script@v7
