@@ -36,7 +36,7 @@ jobs:
             const developers = JSON.parse('${{ steps.read-json.outputs.developers_json }}');
             const commentBody = `### List of Developers\n\`\`\`json\n${JSON.stringify(developers, null, 2)}\n\`\`\``;
 
-            await github.issues.createComment({
+            github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue_number,
