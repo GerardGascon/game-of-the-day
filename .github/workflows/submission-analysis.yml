@@ -25,7 +25,7 @@ jobs:
       - name: Read generated JSON
         id: read-json
         run: |
-          developers_json=$(cat developers.json)
+          developers_json=$(cat developers.json | jq -c .)
           echo "developers_json=$developers_json" >> $GITHUB_OUTPUT
 
       - name: Comment on issue with developers list
