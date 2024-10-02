@@ -45,7 +45,6 @@ body {
     margin-bottom: -128px;
     animation: rotate 10s linear infinite;
     transition: .2s;
-
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
