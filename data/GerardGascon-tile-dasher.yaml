@@ -1,0 +1,13 @@
+name: Tile Dasher
+link: https://nexype.itch.io/tile-dasher
+link_name: itch.io
+cover: GerardGascon-tile-dasher.png
+description: |-
+  In a world on the brink of chaos, ancient gems hold the power to restore balance. But perilous lava flows and deadly traps stand in your way. Run, dash, and master precision to claim your destiny. Will you rise as the hero fate demands? 🔥💎
+  WASD -> Move
+  K/Space -> Dash (after level 4)
+screenshots:
+  - screenshot-0.png
+  - screenshot-1.png
+developers:
+  - V3r4 imvenx.github.io
