@@ -4,7 +4,6 @@ body {
     font-family: "Raleway", sans-serif;
     padding: 0 10px 69px;
     margin: 0;
-    overflow: hidden;
 
     --highlight-color: #6da87a;
     --navigation-transition: 0.3s;
