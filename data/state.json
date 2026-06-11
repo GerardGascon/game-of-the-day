@@ -314,5 +314,9 @@
   {
     "item": "GerardGascon-tile-dasher.yaml",
     "id": "ae8e0e09-baa7-4a76-0640-962a325711f1"
+  },
+  {
+    "item": "GerardGascon-game-bug-color.yaml",
+    "id": "9e8cdc9a-1b06-4a1b-54c5-dbb60f0d7008"
   }
 ]
